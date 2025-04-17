@@ -1,0 +1,68 @@
+/* Paleta suave y coherente */
+body {
+    background-color: #f0f4f8;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    color: #2a4d69;
+    margin-top: 2rem;
+  }
+  
+  p {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Lista de acciones (botones/enlaces) */
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  ul li {
+    background-color: #ffffff;
+    margin: 1rem auto;
+    padding: 1rem;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  ul li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  ul li a {
+    text-decoration: none;
+    color: #2a4d69;
+    font-weight: bold;
+    display: block;
+  }
+  
+  /* Footer alineado horizontalmente */
+  footer {
+    margin-top: 3rem;
+    font-size: 0.9rem;
+    color: gray;
+    padding: 1rem 0;
+  }
+  
+  footer hr {
+    width: 60%;
+    margin: 1rem auto;
+  }
+  
+  footer p {
+    display: inline-block;
+    margin: 0 10px;
+  }
+
+  
+  
