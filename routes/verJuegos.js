@@ -1,10 +1,10 @@
-const express = require('express');
-const router = express.Router();
-const { juegos } = require('../data');
+import express from 'express';
+import { juegos } from '../data.js';
 
-router.get('/api/juegos', (req, res) => {
+const verJuegos = express.Router();
+
+verJuegos.get('/api/juegos', (req, res) => {
   res.json(juegos);
 });
 
-module.exports = router;
-
+export default verJuegos;

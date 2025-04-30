@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
+import { juegos } from '../data.js';
+
 const router = express.Router();
-const { juegos } = require('../data');
 
 router.get('/api/juegos/:id', (req, res) => {
   const id = parseInt(req.params.id);
 
-  // Validación: Comprobar si id es un número válido
   if (isNaN(id)) {
     return res.status(400).json({ error: 'ID inválido. Debe ser un número.' });
   }
@@ -19,4 +19,4 @@ router.get('/api/juegos/:id', (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

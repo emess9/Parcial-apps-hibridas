@@ -1,7 +1,8 @@
-// routes/obtenerPorGenero.js
-const express = require('express');
+
+import express from 'express';
+import {juegos} from '../data.js';
+
 const router = express.Router();
-const { juegos } = require('../data');
 
 router.get('/api/genero/:genero', (req, res) => {
   const genero = decodeURIComponent(req.params.genero.toLowerCase());
@@ -15,4 +16,4 @@ router.get('/api/genero/:genero', (req, res) => {
   }
 });
 
-module.exports = router;
+export default router; 

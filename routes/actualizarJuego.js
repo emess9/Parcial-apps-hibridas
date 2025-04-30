@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
+import { juegos, consolas } from '../data.js';
+
 const router = express.Router();
-const { juegos, consolas } = require('../data');
 
 router.put('/api/juegos/:id', (req, res) => {
   const id = parseInt(req.params.id);
@@ -33,4 +34,4 @@ router.put('/api/juegos/:id', (req, res) => {
   res.json({ mensaje: 'Juego actualizado', juego: juegos[index] });
 });
 
-module.exports = router;
+export default router;

@@ -1,6 +1,8 @@
-const express = require('express');
+
+import express from 'express';
+import {juegos} from '../data.js';
+
 const router = express.Router();
-const { juegos } = require('../data');
 
 router.get('/api/consola/:id', (req, res) => {
   const id = parseInt(req.params.id);
@@ -18,4 +20,5 @@ router.get('/api/consola/:id', (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
+

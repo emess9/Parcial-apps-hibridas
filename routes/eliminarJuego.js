@@ -1,6 +1,8 @@
-const express = require('express');
-const router = express.Router();  // Aquí defines el router correctamente
-const { juegos } = require('../data');
+
+import express from 'express';
+import { juegos } from '../data.js';
+
+const router = express.Router();
 
 router.delete('/api/juegos/:id', (req, res) => {
   const id = parseInt(req.params.id);
@@ -18,4 +20,4 @@ router.delete('/api/juegos/:id', (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
