@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import connectDB from './config/database.js'; // 👈 Conexión DB
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ import obtenerPorConsola from './routes/obtenerPorConsola.js';
 import obtenerPorGenero from './routes/obtenerPorGenero.js';
 import actualizarJuego from './routes/actualizarJuego.js';
 import eliminarJuego from './routes/eliminarJuego.js';
+import crearJuego from './routes/crearJuego.js';
 
 app.use(verJuegos);
 app.use(verConsolas);
@@ -36,8 +38,12 @@ app.use(obtenerPorConsola);
 app.use(obtenerPorGenero);
 app.use(actualizarJuego);
 app.use(eliminarJuego);
+app.use(crearJuego);
 
-//servidor
+// 👉 Conexión a la base de datos
+connectDB();
+
+// servidor
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });

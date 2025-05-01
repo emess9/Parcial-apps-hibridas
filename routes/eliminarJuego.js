@@ -1,22 +1,27 @@
-
 import express from 'express';
-import { juegos } from '../data.js';
+import mongoose from 'mongoose';
+import Juego from '../models/Juego.js';
 
 const router = express.Router();
 
-router.delete('/api/juegos/:id', (req, res) => {
-  const id = parseInt(req.params.id);
-  const index = juegos.findIndex(j => j.id === id);
+router.delete('/api/juegos/:id', async (req, res) => {
+  const { id } = req.params;
 
-  if (isNaN(id)) {
-    return res.status(400).json({ error: 'ID inválido. Debe ser un número.' });
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: 'ID inválido. Debe ser un ObjectId de MongoDB válido.' });
   }
 
-  if (index !== -1) {
-    const eliminado = juegos.splice(index, 1);
-    res.json({ mensaje: 'Juego eliminado', juego: eliminado[0] });
-  } else {
-    res.status(404).json({ error: 'Juego no encontrado' });
+  try {
+    const juegoEliminado = await Juego.findByIdAndDelete(id);
+
+    if (!juegoEliminado) {
+      return res.status(404).json({ error: 'Juego no encontrado' });
+    }
+
+    res.json({ mensaje: 'Juego eliminado', juego: juegoEliminado });
+  } catch (error) {
+    console.error('Error al eliminar el juego:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 });
 

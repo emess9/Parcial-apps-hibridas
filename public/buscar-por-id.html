@@ -6,16 +6,26 @@
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-  <h2>Elegí un ID para ver el juego:</h2>
-  <ul>
-    <li><a href="/api/juegos/1" target="_blank">Juego ID 1</a></li>
-    <li><a href="/api/juegos/2" target="_blank">Juego ID 2</a></li>
-    <li><a href="/api/juegos/3" target="_blank">Juego ID 3</a></li>
-    <li><a href="/api/juegos/4" target="_blank">Juego ID 4</a></li>
-    <li><a href="/api/juegos/5" target="_blank">Juego ID 5</a></li>
-    <li><a href="/api/juegos/6" target="_blank">Juego ID 6</a></li>
-  </ul>
+  <h2>Elegí un juego para ver su ID:</h2>
+  <ul id="lista-juegos"></ul>
 
   <p><a href="/">⬅ Volver al inicio</a></p>
+
+  <script>
+    // Cargar juegos desde la API
+    fetch('/api/juegos')
+      .then(response => response.json())
+      .then(juegos => {
+        const lista = document.getElementById('lista-juegos');
+        juegos.forEach(juego => {
+          const li = document.createElement('li');
+          li.innerHTML = `<a href="/api/juegos/${juego._id}" target="_blank">${juego.titulo}</a>`;
+          lista.appendChild(li);
+        });
+      })
+      .catch(error => {
+        console.error('Error al cargar los juegos:', error);
+      });
+  </script>
 </body>
 </html>

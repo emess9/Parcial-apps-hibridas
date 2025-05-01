@@ -7,12 +7,35 @@
 </head>
 <body>
   <h2>Seleccioná una consola 🎮</h2>
-  <ul>
-    <li><a href="/api/consola/1" target="_blank">PlayStation 5</a></li>
-    <li><a href="/api/consola/2" target="_blank">Xbox Series X</a></li>
-    <li><a href="/api/consola/3" target="_blank">Nintendo Switch</a></li>
+  <ul id="lista-consolas">
+    <!-- Las consolas se cargarán dinámicamente aquí -->
   </ul>
 
   <a href="/" style="display:block; margin-top:2rem;">⬅️ Volver al inicio</a>
+
+  <script>
+    async function cargarConsolas() {
+      try {
+        const respuesta = await fetch('/api/consolas');
+        const consolas = await respuesta.json();
+
+        const lista = document.getElementById('lista-consolas');
+
+        consolas.forEach(consola => {
+          const item = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = `/api/consola/${consola._id}`;
+          link.target = '_blank';
+          link.textContent = consola.nombre;
+          item.appendChild(link);
+          lista.appendChild(item);
+        });
+      } catch (error) {
+        console.error('Error al cargar consolas:', error);
+      }
+    }
+
+    cargarConsolas();
+  </script>
 </body>
 </html>
